@@ -84,3 +84,6 @@ Para la creación (POST) y edición (PATCH) de películas, el frontend envía un
   "descripcion": "String"
 }
 ```
+
+
+**ATENCION**: El repositorio fue completamente realizado utilizando el modelo de IA **Gemini 3 Pro** ya que solo se utiliza como una demostracion de lo que se puede lograr utilizando la API de [FilmManagerApi](https://github.com/ManuelAlonso01/FilmManagerApi) y diferenciarlo de [FilmManager](https://github.com/ManuelAlonso01/FilmManager).
