@@ -89,25 +89,7 @@ function logout() {
     checkAuth();
 }
 
-// ---- NÚCLEO: PETICIONES API ----
-async function fetchWithAuth(endpoint, options = {}) {
-    let token = localStorage.getItem('access_token');
-    const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-        ...options.headers
-    };
 
-    let res = await fetch(`${API_URL}${endpoint}`, { ...options, headers });
-
-    // Lógica básica para atrapar token expirado (opcional: implementar refresh acá)
-    if (res.status === 401) {
-        logout();
-        alert("Tu sesión expiró. Volvé a ingresar.");
-        throw new Error("No autorizado");
-    }
-    return res;
-}
 
 // ---- CARGAR Y RENDERIZAR PELÍCULAS ----
 async function loadMovies() {
