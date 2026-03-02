@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilmManager API - Frontend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans antialiased">
+
+    <div id="auth-view" class="min-h-screen flex items-center justify-center">
+        <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-700">
+            <h2 class="text-3xl font-bold text-center mb-6 text-red-500 tracking-wider">FilmManager</h2>
+            
+            <div class="flex justify-center mb-6 space-x-4">
+                <button id="btn-show-login" class="text-white border-b-2 border-red-500 pb-1">Ingresar</button>
+                <button id="btn-show-register" class="text-gray-400 pb-1">Registrarse</button>
+            </div>
+
+            <form id="auth-form" class="space-y-4">
+                <input type="text" id="username" placeholder="Usuario" required class="w-full bg-gray-700 text-white rounded p-3 focus:outline-none focus:ring-2 focus:ring-red-500">
+                <input type="password" id="password" placeholder="Contraseña" required class="w-full bg-gray-700 text-white rounded p-3 focus:outline-none focus:ring-2 focus:ring-red-500">
+                <button type="submit" id="auth-submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded transition duration-200">Entrar</button>
+            </form>
+            <p id="auth-error" class="text-red-400 text-sm mt-3 text-center hidden"></p>
+        </div>
+    </div>
+
+    <div id="main-view" class="hidden min-h-screen">
+        <nav class="bg-gray-800 shadow-md border-b border-gray-700 p-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-red-500">FilmManager</h1>
+                <div class="space-x-4">
+                    <button id="nav-movies" class="hover:text-red-400 transition">Mis Películas</button>
+                    <button id="nav-stats" class="hover:text-red-400 transition">Resumen</button>
+                    <button onclick="logout()" class="text-gray-400 hover:text-white transition">Cerrar Sesión</button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container mx-auto p-6">
+            <div id="movies-section">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-semibold">Catálogo</h2>
+                    <button onclick="openModal('modal-movie')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-medium transition">
+                        + Subir Película
+                    </button>
+                </div>
+                <div id="movies-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    </div>
+            </div>
+
+            <div id="stats-section" class="hidden max-w-2xl mx-auto bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-xl mt-10">
+                <h2 class="text-2xl font-bold text-red-500 mb-6 border-b border-gray-700 pb-2">Tu Reporte Cinéfilo</h2>
+                <div id="stats-content" class="text-gray-300">
+                    </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal-movie" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-gray-800 rounded-xl p-6 w-full max-w-lg border border-gray-700">
+            <h3 id="modal-title" class="text-xl font-bold mb-4 text-red-400">Nueva Película</h3>
+            <form id="movie-form" class="space-y-4">
+                <input type="hidden" id="movie-id">
+                <input type="text" id="m-title" placeholder="Título" required class="w-full bg-gray-700 rounded p-2 text-white">
+                <input type="url" id="m-poster" placeholder="URL del Póster" required class="w-full bg-gray-700 rounded p-2 text-white">
+                <div class="flex space-x-4">
+                    <input type="number" id="m-duration" placeholder="Duración (min)" required class="w-1/2 bg-gray-700 rounded p-2 text-white">
+                    <input type="number" id="m-rating" placeholder="Calificación (1-10)" min="1" max="10" required class="w-1/2 bg-gray-700 rounded p-2 text-white">
+                </div>
+                <textarea id="m-desc" placeholder="Descripción / Crítica" required rows="3" class="w-full bg-gray-700 rounded p-2 text-white"></textarea>
+                <div class="flex justify-end space-x-3 pt-4">
+                    <button type="button" onclick="closeModal('modal-movie')" class="px-4 py-2 text-gray-400 hover:text-white">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded text-white font-bold">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
